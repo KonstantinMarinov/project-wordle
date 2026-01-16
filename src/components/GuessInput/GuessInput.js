@@ -6,6 +6,7 @@ export function GuessInput() {
     function onSubmit(event) {
         event.preventDefault();
         console.log(event.target[0].value);
+        setGuessValue('');
     }
     return (
         <form
