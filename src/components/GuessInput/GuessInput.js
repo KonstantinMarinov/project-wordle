@@ -36,7 +36,10 @@ export function GuessInput() {
                 onChange={event => onChange(event)}
             />
             {isGuessValid && (
-                <p style={{ color: 'red' }} className="validation-warning">
+                <p
+                    style={{ color: 'red' }}
+                    className="validation-warning"
+                >
                     Guess must be exactly 5 letters
                 </p>
             )}
