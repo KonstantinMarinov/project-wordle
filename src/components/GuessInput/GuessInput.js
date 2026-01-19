@@ -1,4 +1,5 @@
 import React from "react";
+import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 
 export function GuessInput({ guessList, setGuessList }) {
   [guessValue, setGuessValue] = React.useState("");
@@ -26,7 +27,7 @@ export function GuessInput({ guessList, setGuessList }) {
     const newGuessList = [...guessList];
     newGuessList.push({ text: event.target[0].value, id: Math.random() });
     if (newGuessList.length > 6) {
-      const slicedGuessList = newGuessList.slice(1, 7);
+      const slicedGuessList = newGuessList.slice(1, NUM_OF_GUESSES_ALLOWED + 1);
       setGuessList(slicedGuessList);
       return;
     }
