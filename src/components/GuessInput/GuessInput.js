@@ -25,6 +25,11 @@ export function GuessInput({ guessList, setGuessList }) {
 
     const newGuessList = [...guessList];
     newGuessList.push({ text: event.target[0].value, id: Math.random() });
+    if (newGuessList.length > 6) {
+      const slicedGuessList = newGuessList.slice(1, 7);
+      setGuessList(slicedGuessList);
+      return;
+    }
     setGuessList(newGuessList);
   }
 
