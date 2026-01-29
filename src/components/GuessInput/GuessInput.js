@@ -1,11 +1,12 @@
 import React from "react";
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 
-export function GuessInput({ guessList, setGuessList }) {
+export function GuessInput({ guessList, setGuessList, gameResult }) {
   [guessValue, setGuessValue] = React.useState("");
 
   const isGuessValid = guessValue.length === 5 || guessValue.length === 0;
-
+  const isGameOver = gameResult === "win" || gameResult === "lose";
+  
   function onChange(event) {
     const formattedGuess = event.target.value
       .toUpperCase()
@@ -26,12 +27,8 @@ export function GuessInput({ guessList, setGuessList }) {
 
     const newGuessList = [...guessList];
     newGuessList.push({ text: event.target[0].value, id: Math.random() });
-    if (newGuessList.length > 6) {
-      const slicedGuessList = newGuessList.slice(1, NUM_OF_GUESSES_ALLOWED + 1);
-      setGuessList(slicedGuessList);
-      return;
-    }
-    setGuessList(newGuessList);
+    const slicedGuessList = newGuessList.slice(1, NUM_OF_GUESSES_ALLOWED + 1);
+    setGuessList(slicedGuessList);
   }
 
   return (
@@ -41,6 +38,7 @@ export function GuessInput({ guessList, setGuessList }) {
         id="guess-input"
         type="text"
         value={guessValue}
+        disabled={isGameOver}
         onChange={(event) => onChange(event)}
       />
       {!isGuessValid && (
