@@ -20,14 +20,11 @@ function Game() {
   const numberOfGuesses = calculateNumberOfGuesses(guessList);
 
   function calculateGameResult() {
-    console.log(guessList);
-    if (guessList[5].text.length > 0) {
-      const result = checkGuess(guessList[5].text, answer);
+    if (guessList[NUM_OF_GUESSES_ALLOWED - 1].text.length > 0) {
+      const result = checkGuess(guessList[NUM_OF_GUESSES_ALLOWED - 1].text, answer);
       const isGuessCorrect = result.every(
         (letter) => letter.status === "correct",
       );
-
-      console.log(isGuessCorrect);
 
       if (isGuessCorrect) {
         return "win";
